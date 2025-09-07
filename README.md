@@ -7,7 +7,7 @@
 [![Status](https://img.shields.io/badge/Status-Active-success)]()
 
 A clean, role‑based platform that connects **service providers** with **users**.  
-Built with **Laravel 10** and **Filament v3** for a powerful, modern admin experience.
+Built with **Laravel 12** and **Filament v4** for a powerful, modern admin experience.
 
 > **TL;DR (بالمصري):** البروفايدر بيسجل ويدخل يضيف خدمته. اليوزر يتفرّج ويكلم البروفايدر.  
 > في ميزة **Premium** (قدّام شوية) علشان البروفايدر يقدر يضيف أكتر من خدمة لو اشترك.
@@ -37,7 +37,7 @@ Built with **Laravel 10** and **Filament v3** for a powerful, modern admin exper
 This is a **Home Services** platform where:
 - **Providers** authenticate and create their **provider profile**, then **add services**.
 - **Users** can **browse** services and **contact providers** (e.g., WhatsApp).
-- **Admin** manages everything from a **Filament v3** dashboard.
+- **Admin** manages everything from a **Filament v4** dashboard.
 
 > Current scope: Provider login is implemented; **User login is not required** for browsing/contacts.  
 > A **Premium** subscription button exists (UI only for now) to allow adding multiple services in the future.
@@ -102,8 +102,8 @@ Relations:
 ---
 
 ## 🧰 Tech Stack
-- **Backend:** Laravel 10 (PHP ^8.1)
-- **Admin Panel:** Filament v3
+- **Backend:** Laravel 12 (PHP ^8.1)
+- **Admin Panel:** Filament v4
 - **Database:** MySQL or MariaDB
 - **Views:** Blade (Bootstrap/Tailwind – your choice)
 - **Auth:** Laravel Breeze/Fortify/Default Guards (as implemented)
@@ -195,7 +195,7 @@ php artisan serve
 - **Navigation**: Group resources and add quick actions/widgets as needed.
 - **Branding**: Customize Filament theme, colors, and login branding.
 
-> Filament v3 docs: https://filamentphp.com/docs
+> Filament v4 docs: https://filamentphp.com/docs
 
 ---
 
