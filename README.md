@@ -1,279 +1,106 @@
-# 🏠 Home Service Platform (Laravel 12 + Filament v4)
+# Home Services Platform
 
-[![Laravel](https://img.shields.io/badge/Laravel-10.x-FF2D20?logo=laravel&logoColor=white)](https://laravel.com)
-[![Filament](https://img.shields.io/badge/Filament-v3-16A34A)](https://filamentphp.com)
-[![PHP](https://img.shields.io/badge/PHP-%5E8.1-777BB4?logo=php&logoColor=white)]()
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)]()
-[![Status](https://img.shields.io/badge/Status-Active-success)]()
+## Overview
 
-A clean, role‑based platform that connects **service providers** with **users**.  
-Built with **Laravel 12** and **Filament v4** for a powerful, modern admin experience.
-
-> **TL;DR (بالمصري):** البروفايدر بيسجل ويدخل يضيف خدمته. اليوزر يتفرّج ويكلم البروفايدر.  
-> في ميزة **Premium** (قدّام شوية) علشان البروفايدر يقدر يضيف أكتر من خدمة لو اشترك.
+Welcome to the Home Services platform! This project is a comprehensive solution developed using the **Laravel** framework with a powerful admin dashboard built with **Filament**. The main goal of the project is to bridge the gap between users who need various home services and professional service providers.
 
 ---
 
-## 📚 Table of Contents
-- [Overview](#-overview)
-- [Core Features](#-core-features)
-- [Roles & Permissions](#-roles--permissions)
-- [Data Model](#-data-model)
-- [Tech Stack](#-tech-stack)
-- [Getting Started](#-getting-started)
-- [Usage Guide](#-usage-guide)
-- [Admin (Filament)](#-admin-filament)
-- [API Endpoints (Optional)](#-api-endpoints-optional)
-- [Roadmap / Future Work](#-roadmap--future-work)
-- [Project Structure](#-project-structure)
-- [Contributing](#-contributing)
-- [Security](#-security)
-- [License](#-license)
-- [Author](#-author)
+## Project Goals
+
+* **Connect Users and Providers:** Provide an easy-to-use platform that allows users to search for services and contact providers directly.
+* **Provider Dashboard:** Empower service providers to manage their services easily and effectively.
+* **Future Scalability:** The project is designed with a structure that allows for the easy addition of future features like subscription and booking systems.
 
 ---
 
-## 🚀 Overview
-This is a **Home Services** platform where:
-- **Providers** authenticate and create their **provider profile**, then **add services**.
-- **Users** can **browse** services and **contact providers** (e.g., WhatsApp).
-- **Admin** manages everything from a **Filament v4** dashboard.
+## Core Features
 
-> Current scope: Provider login is implemented; **User login is not required** for browsing/contacts.  
-> A **Premium** subscription button exists (UI only for now) to allow adding multiple services in the future.
+### For Providers
 
----
+* **Login and Management:** Service providers can log in to manage their profile and services through the Filament dashboard.
+* **Add and Edit Services:** Providers can easily add new services or modify existing ones.
+* **Content Control:** Providers have full authority over the services they offer.
 
-## ✨ Core Features
-- 🔐 **Authentication**
-  - **Provider login** to add/manage services.
-  - Role-based authorization (**admin**, **provider**, **user**).
+### For Users
 
-- 👨‍🔧 **Provider Management**
-  - Create/Edit Provider profile linked to a user with role `provider`.
-  - Add one or more services (multi-service via **Premium** in roadmap).
-
-- 🛠 **Service Management**
-  - CRUD on `services` including: `name`, `description`, `price`, `image`.
-
-- 🖥 **Admin Dashboard (Filament v3)**
-  - Manage **Users**, **Providers**, **Services** with clean resources.
-
-- 📞 **User Interaction**
-  - Public pages to **view** services and **contact** providers directly.
-
-- 💎 **Premium (Planned)**
-  - Subscription flow to unlock **multiple services per provider**.
+* **Browse Services:** Users can browse a full list of available service providers and the services they offer.
+* **Direct Communication:** The system allows users to communicate directly with their chosen provider.
 
 ---
 
-## 🛡 Roles & Permissions
-Basic roles:
-- `admin` → Full access via Filament dashboard.
-- `provider` → Can create provider profile and manage own services.
-- `user` → Browse services and contact providers (no login required by default).
+## Database Schema
 
-> Use your preferred package/policy setup. Example: Gate/Policy checks on `Service` and `Provider` models.
+The database is designed with a simple yet robust structure that connects users and services:
 
----
+![Database Schema](https://i.imgur.com/your-image-url.png)
 
-## 🧱 Data Model
-Core tables (simplified):
-
-```
-users
-- id, name, email, password, role, phone, created_at, updated_at
-
-providers
-- id, user_id (FK -> users.id)
-- bio, image, created_at, updated_at
-
-services
-- id, provider_id (FK -> providers.id)
-- name, description, price, image, created_at, updated_at
-```
-
-Relations:
-- `User (role=provider)` 1 ── 1 `Provider`
-- `Provider` 1 ── n `Service`
-
-> Enforce ownership (e.g., a provider can only CRUD their own services).
+* **`users` table:** Contains data for all users on the platform, with a `role` column to define the account type (Admin, Provider, User).
+* **`providers` table:** Stores additional information specific to providers.
+* **`services` table:** Holds data for the services added by providers.
 
 ---
 
-## 🧰 Tech Stack
-- **Backend:** Laravel 12 (PHP ^8.1)
-- **Admin Panel:** Filament v4
-- **Database:** MySQL or MariaDB
-- **Views:** Blade (Bootstrap/Tailwind – your choice)
-- **Auth:** Laravel Breeze/Fortify/Default Guards (as implemented)
-- **Media:** Local storage (configurable to S3 later)
+## Technical Stack
+
+* **Backend:** PHP 8.2+, Laravel Framework
+* **Frontend & Dashboard:** Filament PHP
+* **Database:** MySQL
+* **API Development:** Laravel API Resources
+* **Package Management:** Composer, NPM
+* **Styling:** Tailwind CSS
 
 ---
 
-## 🟢 Getting Started
+## How to Run the Project Locally
 
-### 1) Clone
-```bash
-git clone https://github.com/<your-username>/home-service.git
-cd home-service
-```
+To run the project on your local machine, follow these steps:
 
-### 2) Install Dependencies
-```bash
-composer install
-npm install && npm run dev
-```
+1.  **Clone the Repository:**
+    ```bash
+    git clone 
+    cd 
+    ```
 
-### 3) Environment
-```bash
-cp .env.example .env
-php artisan key:generate
-```
+2.  **Install Dependencies:**
+    ```bash
+    composer install
+    npm install
+    npm run dev
+    ```
 
-Update your `.env`:
-```
-APP_NAME="Home Service"
-APP_URL=http://localhost
+3.  **Configure Environment:**
+    * Duplicate the `.env.example` file and rename it to `.env`.
+    * Adjust your database settings in the `.env` file.
+    * Run the following command to generate the application key:
+    ```bash
+    php artisan key:generate
+    ```
 
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=home_service
-DB_USERNAME=root
-DB_PASSWORD=
+4.  **Run Migrations:**
+    ```bash
+    php artisan migrate --seed
+    ```
 
-FILESYSTEM_DISK=public
-```
-
-### 4) Migrate (and optionally seed)
-```bash
-php artisan migrate
-# php artisan db:seed  # if you add seeders
-```
-
-### 5) Storage Symlink (for images)
-```bash
-php artisan storage:link
-```
-
-### 6) Run
-```bash
-php artisan serve
-```
+5.  **Serve the Application:**
+    ```bash
+    php artisan serve
+    ```
 
 ---
 
-## 🧭 Usage Guide
+## Future Roadmap
 
-### Roles
-- **Admin**: access Filament dashboard to manage users/providers/services.
-- **Provider**: login → create provider profile → add service(s).
-- **User**: browse providers/services and contact via WhatsApp/call.
-
-### Provider Flow Summary
-1. Register/Login as provider (role = `provider`).
-2. Complete provider profile.
-3. Add a service (name, description, price, image).
-4. (Future) Upgrade to **Premium** to add multiple services.
-
-### Example WhatsApp Link
-```html
-<a href="https://wa.me/{{ $provider->phone }}" target="_blank" class="btn btn-outline-success w-100">
-    <i class="bi bi-whatsapp"></i> Contact on WhatsApp
-</a>
-```
-
-> Make sure `phone` is in international format without leading `+` or zeros (e.g., `2011XXXXXXX`).
+* **Premium Subscription Module:** Adding a paid subscription system for providers to increase their revenue.
+* **Booking System:** Developing a complete booking system for services.
+* **Reviews & Ratings:** Adding a system for ratings and comments for providers.
 
 ---
 
-## 🧑‍💼 Admin (Filament)
+## Contribution
 
-- **Resources**: `UserResource`, `ProviderResource`, `ServiceResource`.
-- **Policies**: Guard provider actions to their own records.
-- **Navigation**: Group resources and add quick actions/widgets as needed.
-- **Branding**: Customize Filament theme, colors, and login branding.
-
-> Filament v4 docs: https://filamentphp.com/docs
+Contributions are always welcome! If you have any suggestions or feedback, feel free to get in touch.
 
 ---
 
-## 🔌 API Endpoints (Optional)
-If you expose an API (for mobile later), suggested endpoints:
-
-```
-GET   /api/services                # list services
-GET   /api/services/{id}           # show service
-GET   /api/providers               # list providers
-GET   /api/providers/{id}          # show provider
-
-POST  /api/provider/services       # create (auth: provider)
-PUT   /api/provider/services/{id}  # update own service (auth: provider)
-DELETE/api/provider/services/{id}  # delete own service (auth: provider)
-```
-
-> Secure with **Laravel Sanctum** if needed.
-
----
-
-## 🗺 Roadmap / Future Work
-- 💳 **Premium Subscription** (Fawry/Stripe) → Allow multiple services per provider.
-- ⭐ **Ratings & Reviews** for providers.
-- 📅 **Bookings & Scheduling** with availability.
-- 🔔 **Notifications** (email/in-app) for new requests/bookings.
-- 🖼 **Gallery** for provider portfolios.
-- 🌐 **Localization (ar/en)** and SEO improvements.
-
----
-
-## 🧱 Project Structure
-```
-app/
-  Http/Controllers/
-  Models/ (User.php, Provider.php, Service.php)
-  Policies/
-  Providers/
-  Filament/ (Resources, Pages, Widgets)
-
-database/
-  migrations/
-  seeders/
-
-public/
-resources/
-  views/ (Blade templates)
-routes/
-  web.php
-  api.php
-
-storage/
-```
-
----
-
-## 🤝 Contributing
-Pull Requests are welcome. For major changes, please open an issue to discuss what you would like to change.
-
-**Coding style guides**
-- Follow PSR-12 for PHP.
-- Use Eloquent relationships & policies for authorization.
-- Keep controllers thin; push logic to services/policies as needed.
-
----
-
-## 🔐 Security
-If you discover a security vulnerability, please open a private issue or contact the maintainer directly.
-
----
-
-## 📄 License
-This project is open-sourced under the **MIT license**.
-
----
-
-## 👤 Author
-**Mostafa ElKholy**  
-- Email: mostafaelkholy4321@gmail.com  
-- GitHub: https://github.com/mostafaelkholy50  
-- Portfolio: https://mostafa-elkholy.vercel.app
+**Developed with ❤️ by Mostafa**
