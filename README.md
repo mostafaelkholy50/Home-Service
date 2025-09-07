@@ -1,4 +1,4 @@
-# 🏠 Home Service Platform (Laravel 10 + Filament v3)
+# 🏠 Home Service Platform (Laravel 12 + Filament v4)
 
 [![Laravel](https://img.shields.io/badge/Laravel-10.x-FF2D20?logo=laravel&logoColor=white)](https://laravel.com)
 [![Filament](https://img.shields.io/badge/Filament-v3-16A34A)](https://filamentphp.com)
